@@ -1,6 +1,5 @@
 
 
-
 // Objet Pacman
 
 var pacman = {
@@ -90,6 +89,10 @@ for(var i=0; i<lab.h; i++)
    for(var j=0; j<lab.w; j++)
       grille[i][j] = 0;
 
+// Echange avec l'utilisateur: keyCode 
 
-
+var KEY_DOWN	= 40;
+var KEY_UP	= 38;
+var KEY_LEFT	= 37;
+var KEY_RIGHT	= 39;
 
