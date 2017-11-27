@@ -10,7 +10,7 @@ var pacman = {
 	position: [0, 0],
 	speed: 10,
 	lives: 3,
-	state: 0,
+	state: 0, // état 0 on est mangé, état 1 on mange (normalement pacman est mangé)
 
 // Méthodes
 
