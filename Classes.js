@@ -7,7 +7,8 @@ var pacman = {
     // Propriétés
 	dimension: 10,
 	score: 0,
-	position: [0, 0],
+	x: 0,
+	y: 0,
 	speed: 10,
 	lives: 3,
 	state: 0, // état 0 on est mangé, état 1 on mange (normalement pacman est mangé)
@@ -15,16 +16,17 @@ var pacman = {
 // Méthodes
 
     move: function(direction){
-	    if (direction == "right" and grille[pacman.position[0]+1][pacman.position[1]] != -1)
-		    pacman.position[0] += 1; 
-	    if (direction == "left" and grille[pacman.position[0]-1][pacman.position[1]] != -1)
-		    pacman.position[0] += -1;
-	    if (direction == "up" and grille[pacman.position[0]][pacman.position[1]-1] != -1)
-		    pacman.position[1] += -1;
-	    if (direction == "down" and grille[pacman.position[0]][pacman.position[1]+1] != -1)
-		    pacman.position[1] += 1;    
+	    if (direction == "right" and grille[pacman.x+1][pacman.y] != -1)
+		    pacman.x += 1; 
+	    if (direction == "left" and grille[pacman.x-1][pacman.y] != -1)
+		    pacman.x += -1;
+	    if (direction == "up" and grille[pacman.x][pacman.y-1] != -1)
+		    pacman.y += -1;
+	    if (direction == "down" and grille[pacman.x][pacman.y+1] != -1)
+		    pacman.y += 1;    
     }
-	
+    interract: fonction(){
+	if (
     transform: function(){}
     drawPacman: fonction(){}
     getPosition: function(){
