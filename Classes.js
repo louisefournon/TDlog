@@ -77,3 +77,15 @@ var lab = {
 	pillGetEaten: function(){}
 
 }
+
+
+// Création de la matrice des murs du labyrinthe 
+
+var grille = new Array();
+
+for(var i=0; i<9; i++)
+   grille[i] = new Array();
+
+for(var i=0; i<9; i++)
+   for(var j=0; j<9; j++)
+      grille[i][j] = 0;
