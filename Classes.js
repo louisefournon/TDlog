@@ -83,9 +83,9 @@ var lab = {
 
 var grille = new Array();
 
-for(var i=0; i<9; i++)
+for(var i=0; i<lab.h; i++)
    grille[i] = new Array();
 
-for(var i=0; i<9; i++)
-   for(var j=0; j<9; j++)
+for(var i=0; i<lab.h; i++)
+   for(var j=0; j<lab.w; j++)
       grille[i][j] = 0;
