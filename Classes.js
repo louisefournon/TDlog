@@ -89,3 +89,7 @@ for(var i=0; i<lab.h; i++)
 for(var i=0; i<lab.h; i++)
    for(var j=0; j<lab.w; j++)
       grille[i][j] = 0;
+
+
+
+
