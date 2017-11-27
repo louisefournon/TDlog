@@ -7,26 +7,24 @@ var pacman = {
     // Propriétés
 	dimension: 10,
 	score: 0,
-	x: 0,
-	y: 0,
+	position: [0, 0],
 	speed: 10,
 	lives: 3,
-	state: 0, // état 0 on est mangé, état 1 on mange (normalement pacman est mangé)
+	state: 0,
 
 // Méthodes
 
-    move: function(direction){
-	    if (direction == "right" and grille[pacman.x+1][pacman.y] != -1)
-		    pacman.x += 1; 
-	    if (direction == "left" and grille[pacman.x-1][pacman.y] != -1)
-		    pacman.x += -1;
-	    if (direction == "up" and grille[pacman.x][pacman.y-1] != -1)
-		    pacman.y += -1;
-	    if (direction == "down" and grille[pacman.x][pacman.y+1] != -1)
-		    pacman.y += 1;    
+    movePacman: function(direction){
+	    if (direction == "right" and grille[pacman.position[0]+1][pacman.position[1]] != -1)
+		    pacman.position[0] += 1; 
+	    if (direction == "left" and grille[pacman.position[0]-1][pacman.position[1]] != -1)
+		    pacman.position[0] += -1;
+	    if (direction == "up" and grille[pacman.position[0]][pacman.position[1]-1] != -1)
+		    pacman.position[1] += -1;
+	    if (direction == "down" and grille[pacman.position[0]][pacman.position[1]+1] != -1)
+		    pacman.position[1] += 1;    
     }
-    interract: fonction(){
-	if (
+	
     transform: function(){}
     drawPacman: fonction(){}
     getPosition: function(){
@@ -36,6 +34,17 @@ var pacman = {
     getEaten: function(){}
 
 };
+
+
+/ On renvoie un entier aléatoire entre une valeur min (incluse)
+// et une valeur max (exclue).
+// Attention : si on utilisait Math.round(), on aurait une distribution
+// non uniforme !
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 // Objets Fantômes
 
@@ -50,7 +59,9 @@ var Ghost = {
 	target: [0,0],
  
  	//Méthodes
- 	move: function(){}
+ 	moveGhost: function(){
+	
+	}
  	getEatable: function(){}
  	getEaten: function(){}
  	actualizeTarget: function(){}
@@ -111,25 +122,27 @@ for(var i=0; i<lab.h; i++)
 
 // Echange avec l'utilisateur: keyCode 
 //Pour récupérer keycode:
+var KEY_DOWN	= 40;
+var KEY_UP	= 38;
+var KEY_LEFT	= 37;
+var KEY_RIGHT	= 39;
+
 document.onkeydown = applyKey;
 
 function applyKey (_event_){
 	var intKeyCode = checkEventObj(_event_).keyCode;
 	if ( intKeyCode == KEY_RIGHT ){
-			pacman.move("right")
+			pacman.movePacman("right")
 	}
 	else if(intKeyCode==KEY_UP){
-		pacman.move("up")
+		pacman.movePacman("up")
 	}
 	else if(intKeyCode==Key_DOWN){
-		pacman.move("down")
+		pacman.movePacman("down")
 	}
 	else if(intKeyCode==KEY_LEFT){
-		pacman.move("left")
+		pacman.movePacman("left")
 	}
 }
-var KEY_DOWN	= 40;
-var KEY_UP	= 38;
-var KEY_LEFT	= 37;
-var KEY_RIGHT	= 39;
+
 
