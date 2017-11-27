@@ -20,11 +20,11 @@ var pacman = {
 	    if (direction == "left" and grille[pacman.position[0]-1][pacman.position[1]] != -1)
 		    pacman.position[0] += -1;
 	    if (direction == "up" and grille[pacman.position[0]][pacman.position[1]-1] != -1)
-		    pacman.position[0] += -1;
+		    pacman.position[1] += -1;
 	    if (direction == "down" and grille[pacman.position[0]][pacman.position[1]+1] != -1)
-		    pacman.position[0] += 1;
-	    
+		    pacman.position[1] += 1;    
     }
+	
     transform: function(){}
     draw: fonction(){}
     getPosition: function(){}
