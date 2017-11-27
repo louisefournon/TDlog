@@ -14,8 +14,19 @@ var pacman = {
 
 // Méthodes
 
-    move: function(clavier) {}
+    move: function(direction){
+	    if (direction == "right" and grille[pacman.position[0]+1][pacman.position[1]] != -1)
+		    pacman.position[0] += 1; 
+	    if (direction == "left" and grille[pacman.position[0]-1][pacman.position[1]] != -1)
+		    pacman.position[0] += -1;
+	    if (direction == "up" and grille[pacman.position[0]][pacman.position[1]-1] != -1)
+		    pacman.position[0] += -1;
+	    if (direction == "down" and grille[pacman.position[0]][pacman.position[1]+1] != -1)
+		    pacman.position[0] += 1;
+	    
+    }
     transform: function(){}
+    draw: fonction(){}
     getPosition: function(){}
     eatGhost: function(){}
     getEaten: function(){}
@@ -79,6 +90,11 @@ var lab = {
 
 
 // Création de la matrice des murs du labyrinthe 
+
+// -1 pour une case "mur"
+// 0 pour une case "vide"
+// 1 pour une case "pilule normale"
+// 10 pour une case "super pilule"
 
 var grille = new Array();
 
