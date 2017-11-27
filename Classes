@@ -1,3 +1,18 @@
+
+
+
+// Objet Pacman
+
+var pacman = {
+
+    // Propriétés
+	dimension: 10,
+	score: 0,
+	position: [0, 0],
+	speed: 10,
+	lives: 3,
+	state: 0,
+
 // Méthodes
 
     move: function(clavier) {}
