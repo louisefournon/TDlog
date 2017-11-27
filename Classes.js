@@ -90,7 +90,24 @@ for(var i=0; i<lab.h; i++)
       grille[i][j] = 0;
 
 // Echange avec l'utilisateur: keyCode 
+//Pour récupérer keycode:
+document.onkeydown = applyKey;
 
+function applyKey (_event_){
+	var intKeyCode = checkEventObj(_event_).keyCode;
+	if ( intKeyCode == KEY_RIGHT ){
+			pacman.move("right")
+	}
+	else if(intKeyCode==KEY_UP){
+		pacman.move("up")
+	}
+	else if(intKeyCode==Key_DOWN){
+		pacman.move("down")
+	}
+	else if(intKeyCode==KEY_LEFT){
+		pacman.move("left")
+	}
+}
 var KEY_DOWN	= 40;
 var KEY_UP	= 38;
 var KEY_LEFT	= 37;
