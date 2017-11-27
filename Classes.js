@@ -32,6 +32,9 @@ var pacman = {
     }
     eatGhost: function(){}
     getEaten: function(){}
+	collision: function(){
+		if (position == 
+	}
 
 };
 
