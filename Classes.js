@@ -14,8 +14,7 @@ var pacman = {
 	state: 0, // état 0 on est mangé, état 1 on mange (normalement pacman est mangé)
 
 // Méthodes
-
-    move: function(direction){
+	move: function(direction){
 	    if (direction == "right" and grille[pacman.x+1][pacman.y] != -1)
 		    pacman.x += 1; 
 	    if (direction == "left" and grille[pacman.x-1][pacman.y] != -1)
@@ -24,16 +23,31 @@ var pacman = {
 		    pacman.y += -1;
 	    if (direction == "down" and grille[pacman.x][pacman.y+1] != -1)
 		    pacman.y += 1;    
-    }
-    interract: fonction(){
-	if (
-    transform: function(){}
-    drawPacman: fonction(){}
-    getPosition: function(){
-    	return pacman.position;
-    }
-    eatGhost: function(){}
-    getEaten: function(){}
+   	}
+	
+   	interract: fonction(){
+		if (grille[pacman.x][pacman.y] == 1){ // i.e. pilule normale
+			pacman.score += 1;
+			grille[pacman.x][pacman.y] = 0;
+		}
+		else if (grille[pacman.x][pacman.y] == 10){ // i.e. super pilule
+			pacman.score += 1;
+			pacman.state = 1;
+			ghost1.getEatable();
+			ghost2.getEatable();
+			ghost2.getEatable();
+			ghost2.getEatable();
+			grille[pacman.x][pacman.y] = 0;
+		}
+    	}
+    	transform: function(){}
+
+    	drawPacman: fonction(){}
+    	getPosition: function(){
+    		return pacman.position;
+    	}
+    	eatGhost: function(){}
+    	getEaten: function(){}
 
 };
 
@@ -50,8 +64,11 @@ var Ghost = {
 	target: [0,0],
  
  	//Méthodes
- 	move: function(){}
- 	getEatable: function(){}
+ 	moveghost: function(){} // Différent selon l'état du fantôme (fuit pacman ou le suit)
+ 	getEatable: function(){
+		Ghost.state = 0;
+		Ghost.color = white;
+	}
  	getEaten: function(){}
  	actualizeTarget: function(){}
 
@@ -88,7 +105,6 @@ var lab = {
 
 	//Méthodes
 	show: function(){}
-	pillGetEaten: function(){}
 
 }
 
