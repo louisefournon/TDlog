@@ -26,8 +26,10 @@ var pacman = {
     }
 	
     transform: function(){}
-    draw: fonction(){}
-    getPosition: function(){}
+    drawPacman: fonction(){}
+    getPosition: function(){
+    	return pacman.position;
+    }
     eatGhost: function(){}
     getEaten: function(){}
 
