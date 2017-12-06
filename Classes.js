@@ -1,53 +1,58 @@
-
-
 // Objet Pacman
 
 var pacman = {
 
-    // Propriétés
-	dimension: 10,
-	score: 0,
-	x: 0,
-	y: 0,
-	speed: 10,
-	lives: 3,
-	state: 0, // état 0 on est mangé, état 1 on mange (normalement pacman est mangé)
-
-// Méthodes
-	move: function(direction){
-	    if (direction == "right" and grille[pacman.x+1][pacman.y] != -1)
-		    pacman.x += 1; 
-	    if (direction == "left" and grille[pacman.x-1][pacman.y] != -1)
-		    pacman.x += -1;
-	    if (direction == "up" and grille[pacman.x][pacman.y-1] != -1)
-		    pacman.y += -1;
-	    if (direction == "down" and grille[pacman.x][pacman.y+1] != -1)
-		    pacman.y += 1;    
-   	}
+    //Initialisation
+    init: function (dimension, score, x, y, speed) {
+        //Taille du PacMan
+        this.dimension = dimension;
+        // Score accumulé au fur et à mesure du jeu
+        this.score = score;
+        //Coordonnées cartésiennes de base de PacMan
+        this.x = x;
+        this.y = y;
+        //Vitesse (unité arbitraire pour l'instant) de déplacement
+        this.speed = speed;
+        //nombre de vies de base
+        this.lives = 3;
+        // état 0 on est mangé, état 1 on mange (normalement pacman est mangé)
+        this.state = 0;
+    },
+    // Méthodes
+    
+    //Vérifie que PacMan peut avancer sur une case qui n'est pas prise par la grille de jeu
+    move: function (direction, grille) {
+        if (direction === "right" && grille[pacman.x + 1][pacman.y] !== -1) {pacman.x += 1; }
+        if (direction === "left" && grille[pacman.x - 1][pacman.y] !== -1) {pacman.x += -1; }
+        if (direction === "up" && grille[pacman.x][pacman.y - 1] !== -1) {pacman.y += -1; }
+        if (direction === "down" && grille[pacman.x][pacman.y + 1] !== -1) {pacman.y += 1; }
+    },
 	
-   	interract: fonction(){
-		if (grille[pacman.x][pacman.y] == 1){ // i.e. pilule normale
+    interract: function (grille, ghost1, ghost2, ghost3, ghost4) {
+        //Mange une pilule 
+		if (grille[pacman.x][pacman.y] == 1) { 
 			pacman.score += 1;
 			grille[pacman.x][pacman.y] = 0;
 		}
-		else if (grille[pacman.x][pacman.y] == 10){ // i.e. super pilule
+        //Mange une super pilule, change son état
+		else if (grille[pacman.x][pacman.y] == 10){ 
 			pacman.score += 1;
 			pacman.state = 1;
 			ghost1.getEatable();
 			ghost2.getEatable();
-			ghost2.getEatable();
-			ghost2.getEatable();
+			ghost3.getEatable();
+			ghost4.getEatable();
 			grille[pacman.x][pacman.y] = 0;
 		}
-    	}
-    	transform: function(){}
+    },
+    transform: function(){},
 
-    	drawPacman: fonction(){}
-    	getPosition: function(){
-    		return pacman.position;
-    	}
-    	eatGhost: function(){}
-    	getEaten: function(){}
+	drawPacman: function(){},
+	getPosition: function(){
+        return pacman.position;
+    },
+	eatGhost: function(){},
+	getEaten: function(){}
 
 };
 
@@ -55,28 +60,39 @@ var pacman = {
 
 var Ghost = {
 	
-	// Propriétés
-	dimensions: 10,
-	couleur: blue,
-	speed: 10,
-	position: [0,0],
-	state: 1,
-	target: [0,0],
- 
- 	//Méthodes
- 	moveghost: function(){} // Différent selon l'état du fantôme (fuit pacman ou le suit)
- 	getEatable: function(){
+    //Initialisation
+    init: function (dimension, couleur, speed, x, y) {
+        //Taille du fantome
+        this.dimensions = dimension;
+        //Couleur du fantome
+        this.couleur = couleur;
+        //Vitesse (en unité arbitraire) de déplacement
+        this.speed = speed;
+        //Coordonnées cartésiennes du fantome
+        this.x = x;
+        this.y = y;
+        //état de base égale à 1 (poursuit PacMan); égal à 0 quand PacMan mange une super pilule
+        this.state = 1;
+        this.target = [0,0];
+    },
+
+    //Méthodes
+    
+    //Déplacement autonome du fantome, poursuit ou fuit PacMan selon son état
+    moveghost: function () {}, 
+    //Changement d'état quand PacMan mange une pilule
+    getEatable: function () {
 		Ghost.state = 0;
-		Ghost.color = white;
-	}
- 	getEaten: function(){}
- 	actualizeTarget: function(){}
+		Ghost.color = "white"; 
+	},
+    getEaten: function(){},
+    actualizeTarget: function(){}
 
 }
 
 
 var ghost1 = Object.create(Ghost);
-ghost1.color = blue;
+ghost1.color = "blue";
 ghost1.position = [1,1]
 
 var ghost1 = Object.create(Ghost);
@@ -101,8 +117,7 @@ var lab = {
 	l: 500,
 	w: 500,
 	h: 12,
-	map: 
-
+	map: 0, 
 	//Méthodes
 	show: function(){}
 
@@ -148,4 +163,3 @@ var KEY_DOWN	= 40;
 var KEY_UP	= 38;
 var KEY_LEFT	= 37;
 var KEY_RIGHT	= 39;
-
