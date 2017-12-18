@@ -139,7 +139,16 @@ for(var i=0; i<lab.h; i++)
 for(var i=0; i<lab.h; i++)
    for(var j=0; j<lab.w; j++)
       grille[i][j] = 0;
-
+// Enceinte du labyrinthe (murs extérieurs)
+for(var i=0; i<lab.h; i++){
+	grille[i][0] = -1
+	grille[i][lab.w-1] = -1
+	}
+for(var j=0; j<lab.h; j++){
+	grille[0][j] = -1
+	grille[lab.h-1][j] = -1
+}
+    
 // Echange avec l'utilisateur: keyCode 
 //Pour récupérer keycode:
 document.onkeydown = applyKey;
