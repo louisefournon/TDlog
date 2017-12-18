@@ -30,12 +30,12 @@ var pacman = {
 	
     interract: function (grille, ghost1, ghost2, ghost3, ghost4) {
         //Mange une pilule 
-		if (grille[pacman.x][pacman.y] == 1) { 
+		if (grille[pacman.x][pacman.y] === 1) {
 			pacman.score += 1;
 			grille[pacman.x][pacman.y] = 0;
 		}
         //Mange une super pilule, change son état
-		else if (grille[pacman.x][pacman.y] == 10){ 
+        else if (grille[pacman.x][pacman.y] === 10) { 
 			pacman.score += 1;
 			pacman.state = 1;
 			ghost1.getEatable();
@@ -56,13 +56,12 @@ var pacman = {
 
 };
 
+// Objets Fantômes
+
 // Fonction qui renvoie un entier aléatoire entre min et max
 function aleatoire(min, max) {
 	return (Math.floor((max-min)*Math.random())+min);
 }
-
-
-// Objets Fantômes
 
 var Ghost = {
 	
@@ -85,21 +84,25 @@ var Ghost = {
     //Méthodes
     
     //Déplacement autonome du fantome, poursuit ou fuit PacMan selon son état
+    //Déplacement autonome du fantome, poursuit ou fuit PacMan selon son état
     moveghost: function (){
-	    var d = []
-	    if (grille[Ghost.x + 1][Ghost.y] !== -1):{
-		    d.push([Ghost.x + 1, Ghost.y])}
-	    if (grille[Ghost.x - 1][Ghost.y] !== -1):{
-		    d.push([Ghost.x - 1, Ghost.y])}
-	    if (grille[Ghost.x][host.y + 1] !== -1):{
-		    d.push([Ghost.x, Ghost.y + 1])}
-	    if (grille[Ghost.x][Ghost.y - 1] !== -1):{
-		    d.push([Ghost.x, Ghost.y - 1])}
-	    var c = aleatoire(0, d.length)
-	    Ghost.x = d[c][0]
-	    Ghost.y = d[c][1
-	    
-    }, 
+        var d = [];
+        if (grille[Ghost.x + 1][Ghost.y] !== -1){
+            d.push([Ghost.x + 1, Ghost.y]);
+        }
+        if (grille[Ghost.x - 1][Ghost.y] !== -1){
+            d.push([Ghost.x - 1, Ghost.y]);
+        }
+        if (grille[Ghost.x][Ghost.y + 1] !== -1){
+            d.push([Ghost.x, Ghost.y + 1]);
+        }
+        if (grille[Ghost.x][Ghost.y - 1] !== -1){
+            d.push([Ghost.x, Ghost.y - 1]);
+        }
+        var c = aleatoire(0, d.length);
+        Ghost.x = d[c][0];
+        Ghost.y = d[c][1];
+    },
     //Changement d'état quand PacMan mange une pilule
     getEatable: function () {
 		Ghost.state = 0;
@@ -108,40 +111,36 @@ var Ghost = {
     getEaten: function(){},
     actualizeTarget: function(){}
 
-}
+};
 
 
 var ghost1 = Object.create(Ghost);
-ghost1.color = "blue";
-ghost1.position = [1,1]
+ghost1.init(5,"blue",10,1,1);
 
-var ghost1 = Object.create(Ghost);
-ghost1.color = red;
-ghost1.position = [lab.w - 1,1]
+var ghost2 = Object.create(Ghost);
+ghost2.init(5,"yellow",10,1,1);
 
-var ghost1 = Object.create(Ghost);
-ghost1.color = yellow;
-ghost1.position = [lab.w-1,lab.h-1]
+var ghost3 = Object.create(Ghost);
+ghost3.init(5,"pink",10,1,1);
 
-var ghost1 = Object.create(Ghost);
-ghost1.color = green;
-ghost1.position = [1,lab.h-1]
+var ghost4 = Object.create(Ghost);
+ghost4.init(5,"red",10,1,1);
 
 // Objet Labyrinthe
-
-var scale = 10;
+//var scale = 10;
 
 var lab = {
-
-	//Propriétés
-	l: 500,
-	w: 500,
-	h: 12,
-	map: 0, 
-	//Méthodes
+    
+    //Initialise le labyrinthe
+    init: function(length,width,height,map){
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.map = map;
+    },
+    //Affiche le labyrinthe
 	show: function(){}
-
-}
+};
 
 
 // Création de la matrice des murs du labyrinthe 
@@ -153,24 +152,24 @@ var lab = {
 
 var grille = new Array();
 
-for(var i=0; i<lab.h; i++)
-   grille[i] = new Array();
-
-for(var i=0; i<lab.h; i++)
-   for(var j=0; j<lab.w; j++)
-      grille[i][j] = 1;
-
-// Enceinte du labyrinthe (murs extérieurs) + pilules à l'extérieur
 for(var i=0; i<lab.h; i++){
-	grille[i][0] = -1
-	grille[i][lab.w-1] = -1
-	}
-for(var j=0; j<lab.h; j++){
-	grille[0][j] = -1
-	grille[lab.h-1][j] = -1
+    grille[i] = new Array();
 }
 
-    
+
+for(i=0; i<lab.h; i++)
+   for(var j=0; j<lab.w; j++)
+      grille[i][j] = 0;
+// Enceinte du labyrinthe (murs extérieurs)
+for(i=0; i<lab.h; i++){
+	grille[i][0] = -1;
+	grille[i][lab.w-1] = -1;
+}
+for(j=0; j<lab.h; j++){
+	grille[0][j] = -1;
+	grille[lab.h-1][j] = -1;
+}
+
 // Echange avec l'utilisateur: keyCode 
 //Pour récupérer keycode:
 document.onkeydown = applyKey;
@@ -190,7 +189,7 @@ function applyKey (_event_){
 		pacman.move("left")
 	}
 }
-var KEY_DOWN	= 40;
-var KEY_UP	= 38;
-var KEY_LEFT	= 37;
-var KEY_RIGHT	= 39;
+var KEY_DOWN = 40;
+var KEY_UP = 38;
+var KEY_LEFT = 37;
+var KEY_RIGHT = 39;
