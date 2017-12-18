@@ -56,6 +56,12 @@ var pacman = {
 
 };
 
+// Fonction qui renvoie un entier aléatoire entre min et max
+function aleatoire(min, max) {
+	return (Math.floor((max-min)*Math.random())+min);
+}
+
+
 // Objets Fantômes
 
 var Ghost = {
@@ -79,7 +85,21 @@ var Ghost = {
     //Méthodes
     
     //Déplacement autonome du fantome, poursuit ou fuit PacMan selon son état
-    moveghost: function () {}, 
+    moveghost: function (){
+	    var d = []
+	    if (grille[Ghost.x + 1][Ghost.y] !== -1):{
+		    d.push([Ghost.x + 1, Ghost.y])}
+	    if (grille[Ghost.x - 1][Ghost.y] !== -1):{
+		    d.push([Ghost.x - 1, Ghost.y])}
+	    if (grille[Ghost.x][host.y + 1] !== -1):{
+		    d.push([Ghost.x, Ghost.y + 1])}
+	    if (grille[Ghost.x][Ghost.y - 1] !== -1):{
+		    d.push([Ghost.x, Ghost.y - 1])}
+	    var c = aleatoire(0, d.length)
+	    Ghost.x = d[c][0]
+	    Ghost.y = d[c][1
+	    
+    }, 
     //Changement d'état quand PacMan mange une pilule
     getEatable: function () {
 		Ghost.state = 0;
@@ -138,8 +158,9 @@ for(var i=0; i<lab.h; i++)
 
 for(var i=0; i<lab.h; i++)
    for(var j=0; j<lab.w; j++)
-      grille[i][j] = 0;
-// Enceinte du labyrinthe (murs extérieurs)
+      grille[i][j] = 1;
+
+// Enceinte du labyrinthe (murs extérieurs) + pilules à l'extérieur
 for(var i=0; i<lab.h; i++){
 	grille[i][0] = -1
 	grille[i][lab.w-1] = -1
@@ -148,6 +169,7 @@ for(var j=0; j<lab.h; j++){
 	grille[0][j] = -1
 	grille[lab.h-1][j] = -1
 }
+
     
 // Echange avec l'utilisateur: keyCode 
 //Pour récupérer keycode:
