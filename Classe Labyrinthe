@@ -1,0 +1,13 @@
+// Objet labyrinthe
+
+var lab = {
+    //Initialise le labyrinthe
+	init: function(length,width,height,map){
+        	this.length = length;
+        	this.width = width;
+        	this.height = height;
+        	this.map = map;
+    },
+    //Affiche le labyrinthe
+	show: function(){}
+};
