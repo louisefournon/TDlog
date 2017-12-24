@@ -26,7 +26,6 @@ for(var i=0; i<lab.h; i++){
         grille[i] = new Array();
 }
 
-
 for(i=0; i<lab.h; i++)
     for(var j=0; j<lab.w; j++)
         grille[i][j] = 0;
@@ -38,6 +37,11 @@ for(i=0; i<lab.h; i++){
 for(j=0; j<lab.h; j++){
 	grille[0][j] = -1;
 	grille[lab.h-1][j] = -1;
+}
+
+// Fonction qui renvoie un entier aléatoire entre min et max
+function aleatoire(min, max) {
+	return (Math.floor((max-min)*Math.random())+min);
 }
 
 // Echange avec l'utilisateur: keyCode 
