@@ -1,1 +1,58 @@
 
+// Objet Pacman
+
+var pacman = {
+
+    //Initialisation
+    init: function (dimension, score, x, y, speed) {
+        //Taille du PacMan
+        this.dimension = dimension;
+        // Score accumulé au fur et à mesure du jeu
+        this.score = score;
+        //Coordonnées cartésiennes de base de PacMan
+        this.x = x;
+        this.y = y;
+        //Vitesse (unité arbitraire pour l'instant) de déplacement
+        this.speed = speed;
+        //nombre de vies de base
+        this.lives = 3;
+        // état 0 on est mangé, état 1 on mange (normalement pacman est mangé)
+        this.state = 0;
+    },
+    // Méthodes
+    
+    //Vérifie que PacMan peut avancer sur une case qui n'est pas prise par la grille de jeu
+    move: function (direction, grille) {
+        if (direction === "right" && grille[pacman.x + 1][pacman.y] !== -1) {pacman.x += 1; }
+        if (direction === "left" && grille[pacman.x - 1][pacman.y] !== -1) {pacman.x += -1; }
+        if (direction === "up" && grille[pacman.x][pacman.y - 1] !== -1) {pacman.y += -1; }
+        if (direction === "down" && grille[pacman.x][pacman.y + 1] !== -1) {pacman.y += 1; }
+    },
+	
+    interract: function (grille, ghost1, ghost2, ghost3, ghost4) {
+        //Mange une pilule 
+		if (grille[pacman.x][pacman.y] === 1) {
+			pacman.score += 1;
+			grille[pacman.x][pacman.y] = 0;
+		}
+        //Mange une super pilule, change son état
+        else if (grille[pacman.x][pacman.y] === 10) { 
+			pacman.score += 1;
+			pacman.state = 1;
+			ghost1.getEatable();
+			ghost2.getEatable();
+			ghost3.getEatable();
+			ghost4.getEatable();
+			grille[pacman.x][pacman.y] = 0;
+		}
+    },
+    transform: function(){},
+
+	drawPacman: function(){},
+	getPosition: function(){
+        return pacman.position;
+    },
+	eatGhost: function(){},
+	getEaten: function(){}
+
+};
