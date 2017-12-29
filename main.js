@@ -1,14 +1,14 @@
 var ghost1 = Object.create(Ghost);
-ghost1.init(5,"blue",10,1,1);
+ghost1.init(5,"red",10,1,1);
 
 var ghost2 = Object.create(Ghost);
-ghost2.init(5,"yellow",10,1,1);
+ghost2.init(5,"pink",10,1,1);
 
 var ghost3 = Object.create(Ghost);
-ghost3.init(5,"pink",10,1,1);
+ghost3.init(5,"green",10,1,1);
 
 var ghost4 = Object.create(Ghost);
-ghost4.init(5,"red",10,1,1);
+ghost4.init(5,"yellow",10,1,1);
 
 // Objet Labyrinthe
 //var scale = 10;
