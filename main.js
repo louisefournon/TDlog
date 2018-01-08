@@ -20,25 +20,6 @@ ghost4.init(5,"yellow",10,1,1);
 // 1 pour une case "pilule normale"
 // 10 pour une case "super pilule"
 
-var grille = new Array();
-
-for(var i=0; i<lab.h; i++){
-        grille[i] = new Array();
-}
-
-for(i=0; i<lab.h; i++)
-    for(var j=0; j<lab.w; j++)
-        grille[i][j] = 0;
-// Enceinte du labyrinthe (murs extérieurs)
-for(i=0; i<lab.h; i++){
-	grille[i][0] = -1;
-	grille[i][lab.w-1] = -1;
-}
-for(j=0; j<lab.h; j++){
-	grille[0][j] = -1;
-	grille[lab.h-1][j] = -1;
-}
-
 // Fonction qui renvoie un entier aléatoire entre min et max
 function aleatoire(min, max) {
 	return (Math.floor((max-min)*Math.random())+min);
