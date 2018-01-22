@@ -53,7 +53,7 @@ var Ghost = {
         }
         else{
             this.state = 0;
-            this.colot = " ";
+            this.color = " ";
         }
 		
 	},
