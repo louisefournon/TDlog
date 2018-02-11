@@ -1,3 +1,5 @@
+/*Fichier abandonné pour l'instant*/
+
 function trouveMin(){
     var mini = "infini";
     var indice;
