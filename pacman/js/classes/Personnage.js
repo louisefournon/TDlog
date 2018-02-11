@@ -47,6 +47,7 @@ function Personnage(url, x, y, direction, vitesse, bool) {
 	this.image.src = "sprites/" + url;
 }
 
+//Fonction d'affichage
 Personnage.prototype.dessinerPersonnage = function(context, i) {
 	var frame = 0; // Numéro de l'image à prendre pour l'animation
 	var decalageX = 0, decalageY = 0; // Décalage à appliquer à la position du personnage
@@ -92,6 +93,7 @@ Personnage.prototype.dessinerPersonnage = function(context, i) {
 		this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
         );
     }
+	//Dessin des fantômes dans l'état de panique
     if (this.etat==1){
         context.drawImage(
 		this.image, 
@@ -102,6 +104,7 @@ Personnage.prototype.dessinerPersonnage = function(context, i) {
 		this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
         );
     }
+	//Dessin des personnages lorsque morts
     if (this.etat == 3){
         context.drawImage(
 		this.image, 
@@ -134,6 +137,7 @@ Personnage.prototype.getCoordonneesAdjacentes = function(direction) {
 	return coord;
 }
 
+//Déplacement de pacman
 Personnage.prototype.deplacer = function(direction, map) {
 	// On ne peut pas se déplacer si un mouvement est déjà en cours !
 	if(this.etatAnimation >= 0) {
@@ -174,6 +178,7 @@ Personnage.prototype.deplacer = function(direction, map) {
 	return true;
 }
 
+//Déplacement des fantômes
 Personnage.prototype.deplacerauto = function(map) {
 	// On ne peut pas se déplacer si un mouvement est déjà en cours !
 	if(this.etatAnimation >= 0) {
@@ -235,6 +240,7 @@ Personnage.prototype.deplacerauto = function(map) {
 	return true;
 }
 
+//Gestion des collisions entre pacman et les fantomes
 Personnage.prototype.collision = function(perso1){
     var prochaineCase = this.getCoordonneesAdjacentes(this.direction);
     if (this.image.referenceDuPerso != perso1.image.referenceDuPerso && prochaineCase.x==perso1.x && prochaineCase.y==perso1.y){
@@ -262,6 +268,7 @@ Personnage.prototype.collision = function(perso1){
     return false;
 }
 
+//Gestion des pilules
 Personnage.prototype.mdma = function(map){
  /*   var prochaineCase=this.getCoordonneesAdjacentes(this.direction);*/
     if (map.terrain[this.y][this.x]==30 && (this.etat==0 || this.etat==2)){
@@ -292,12 +299,13 @@ Personnage.prototype.retour_normal=function(){
     }
 }
 
+//Indicateur de game over
 Personnage.prototype.verifMort = function(){
     return (this.etat == ETAT.Mort && this.vies==0);
 }
 
 //Fonction qui active l'état aware des fantomes. On considère qu'il  est activé si le fantome voit pacman; ie bonne ligne et bonne direction; et qu'on est epsilon proche
-Personnage.prototype.awareness = function(pacman,epsilon){
+/*Personnage.prototype.awareness = function(pacman,epsilon){
     if(this.x==pacman.x && Math.abs(this.y-pacman.y)<epsilon){
         this.etat=ETAT.Aware;
     }
@@ -308,14 +316,15 @@ Personnage.prototype.awareness = function(pacman,epsilon){
         this.etat=ETAT.Normal;
     }
     return true;
-}
+}*/
 
+//Distance, en norme 1, entre un fantôme et pacman
 Personnage.prototype.distance = function(target, direction){
     var prochaineCase=this.getCoordonneesAdjacentes(direction);
     return Math.abs(prochaineCase.x - target.x) + Math.abs(prochaineCase.y - target.y);
 }
 
-Personnage.prototype.getTarget = function(target,terrain_accessible){
+/*Personnage.prototype.getTarget = function(target,terrain_accessible){
     var min = 100000;
     var x;
     var direction;
@@ -348,4 +357,4 @@ Personnage.prototype.getTarget = function(target,terrain_accessible){
         }
     }
     return direction;
-}
+}*/
