@@ -33,12 +33,9 @@ window.onload = function() {
         ctx2.fillStyle = "yellow";
         ctx2.fillText("SCORE",score.width/5,score.height/2);
         ctx2.fillText("VIES", score.width/5, score.height/3);
-        ctx2.fillText("Pilules", score.width/5, 2*score.height/3);
         ctx2.font = "bold 40px Comics";
         ctx2.fillText(pacman.score,score.width/3,score.height/2 + 60);
-        ctx2.fillText(pacman.vies, score.width/3, score.height/3+60);
-        ctx2.fillText(map.nbpilules, score.width/3, 2*score.height/3+60);
-       
+        ctx2.fillText(pacman.vies, score.width/3, score.height/3+60);       
     }
     IncreaseScore();
     
@@ -65,22 +62,22 @@ window.onload = function() {
         if(deb>75){
             ghost1.deplacerauto(map);
             ghost1.retour_normal();
-            ghost1.awareness(pacman,5);
+            //ghost1.awareness(pacman,5);
         }
         if(deb>150){
             ghost2.deplacerauto(map);
             ghost2.retour_normal();
-            ghost2.awareness(pacman,5);
+            //ghost2.awareness(pacman,5);
         }
         if(deb>225){
             ghost3.deplacerauto(map);
             ghost3.retour_normal();
-            ghost3.awareness(pacman,5);
+            //ghost3.awareness(pacman,5);
         }
         if(deb>300){
             ghost4.deplacerauto(map);
             ghost4.retour_normal();
-            ghost4.awareness(pacman,5);
+            //ghost4.awareness(pacman,5);
         }
         pacman.retour_normal();
         IncreaseScore();
@@ -108,7 +105,6 @@ window.onload = function() {
             ctx.fillText("Congrats !! You win !",30,canvas.height/2 + 20);
         }
     }
-    /*map_mort.dessinerMap(ctx);*/
 	
 	// Gestion du clavier
 	window.onkeydown = function(event) {
