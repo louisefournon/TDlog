@@ -1,0 +1,9 @@
+body{
+    position:relative;
+}
+canvas {
+	border: 1px solid black;
+}
+div{
+    position: absolute; width: 100%;left: 0px; top:200px;
+}
