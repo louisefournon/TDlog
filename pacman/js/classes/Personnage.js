@@ -62,7 +62,7 @@ Personnage.prototype.dessinerPersonnage = function(context, i) {
 		}
 		
 		// Nombre de pixels restant à parcourir entre les deux cases
-		var pixelsAParcourir = 32 - (32 * (this.etatAnimation / this.DUREE_DEPLACEMENT));
+		var pixelsAParcourir = 24 - (24 * (this.etatAnimation / this.DUREE_DEPLACEMENT));
 		
 		// À partir de ce nombre, on définit le décalage en x et y.
 		if(this.direction == DIRECTION.HAUT) {
@@ -89,8 +89,8 @@ Personnage.prototype.dessinerPersonnage = function(context, i) {
 		this.largeur * (2*i+frame), this.direction * this.hauteur, // Point d'origine du rectangle source à prendre dans notre image
 		this.largeur, this.hauteur, // Taille du rectangle source (c'est la taille du personnage)
 		// Point de destination (dépend de la taille du personnage)
-		(this.x * 32) - (this.largeur / 2) + 16 + decalageX, (this.y * 32) - this.hauteur + 24 + decalageY,
-		this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
+		(this.x * 24) - (this.largeur / 3) + 16 + decalageX, (this.y * 24) - 2*this.hauteur/3 + 24 + decalageY,
+		this.largeur*2/3, this.hauteur*2/3 // Taille du rectangle destination (c'est la taille du personnage)
         );
     }
 	//Dessin des fantômes dans l'état de panique
@@ -100,8 +100,8 @@ Personnage.prototype.dessinerPersonnage = function(context, i) {
 		this.largeur * (12+frame), frame*this.hauteur, // Point d'origine du rectangle source à prendre dans notre image
 		this.largeur, this.hauteur, // Taille du rectangle source (c'est la taille du personnage)
 		// Point de destination (dépend de la taille du personnage)
-		(this.x * 32) - (this.largeur / 2) + 16 + decalageX, (this.y * 32) - this.hauteur + 24 + decalageY,
-		this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
+		(this.x * 24) - (this.largeur / 3) + 16 + decalageX, (this.y * 24) - this.hauteur*2/3 + 24 + decalageY,
+		this.largeur*2/3, this.hauteur*2/3 // Taille du rectangle destination (c'est la taille du personnage)
         );
     }
 	//Dessin des personnages lorsque morts
@@ -111,8 +111,8 @@ Personnage.prototype.dessinerPersonnage = function(context, i) {
 		this.largeur * (12+frame),2* this.hauteur, // Point d'origine du rectangle source à prendre dans notre image
 		this.largeur, this.hauteur, // Taille du rectangle source (c'est la taille du personnage)
 		// Point de destination (dépend de la taille du personnage)
-		(this.x * 32) - (this.largeur / 2) + 16 + decalageX, (this.y * 32) - this.hauteur + 24 + decalageY,
-		this.largeur, this.hauteur // Taille du rectangle destination (c'est la taille du personnage)
+		(this.x * 24) - (this.largeur / 3) + 16 + decalageX, (this.y * 24) - this.hauteur*2/3 + 24 + decalageY,
+		this.largeur*2/3, this.hauteur*2/3 // Taille du rectangle destination (c'est la taille du personnage)
         );
     }
 	
