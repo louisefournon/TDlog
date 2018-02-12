@@ -58,7 +58,7 @@ window.onload = function() {
         map.dessinerMap(ctx);
         ghost.deplacerauto(map);
         ghost.retour_normal();
-        ghost.awareness(pacman,5);
+        //ghost.awareness(pacman,5);
         if(deb>75){
             ghost1.deplacerauto(map);
             ghost1.retour_normal();
