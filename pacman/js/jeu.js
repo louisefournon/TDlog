@@ -19,8 +19,8 @@ window.onload = function() {
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 	
-	canvas.width  = map.getLargeur() * 32;
-	canvas.height = map.getHauteur() * 32;
+	canvas.width  = map.getLargeur() * 24;
+	canvas.height = map.getHauteur() * 24;
     
     
     /*Ecran du score*/
@@ -29,11 +29,11 @@ window.onload = function() {
     function IncreaseScore(){
         ctx2.fillStyle = "black";
         ctx2.fillRect(0,0,score.width,score.height);
-        ctx2.font = "bold 50px Comics";
+        ctx2.font = "bold 30px Comics";
         ctx2.fillStyle = "yellow";
         ctx2.fillText("SCORE",score.width/5,score.height/2);
         ctx2.fillText("VIES", score.width/5, score.height/3);
-        ctx2.font = "bold 40px Comics";
+        ctx2.font = "bold 25px Comics";
         ctx2.fillText(pacman.score,score.width/3,score.height/2 + 60);
         ctx2.fillText(pacman.vies, score.width/3, score.height/3+60);       
     }
@@ -43,10 +43,10 @@ window.onload = function() {
 	
     ctx.fillStyle = "black";
     ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.font = "bold 80px Comics";
+    ctx.font = "bold 50px Comics";
     ctx.fillStyle = "yellow";
     ctx.fillText("Pac-Man",canvas.width/3 - 15,canvas.height/2);
-    ctx.font = "40px Comics";
+    ctx.font = "30px Comics";
     ctx.fillText("Press a key to start the game",canvas.width/5,canvas.height/2 +80);
     
     var deb=0;
@@ -92,7 +92,7 @@ window.onload = function() {
             map_mort.dessinerMap(ctx);
             pacman.dessinerPersonnage(ctx,5);
             ctx.fillStyle = "red";
-            ctx.font = "bold 70px Comics";
+            ctx.font = "bold 60px Comics";
             ctx.fillText("GAME OVER",canvas.width/4 - 15,canvas.height/2 + 20);
         }
         if(map.nbpilules==0){
@@ -101,7 +101,7 @@ window.onload = function() {
             map_mort.dessinerMap(ctx);
             pacman.dessinerPersonnage(ctx,5);
             ctx.fillStyle = "green";
-            ctx.font = "bold 70px Comics";
+            ctx.font = "bold 60px Comics";
             ctx.fillText("Congrats !! You win !",30,canvas.height/2 + 20);
         }
     }
