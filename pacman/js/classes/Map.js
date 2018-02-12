@@ -13,16 +13,13 @@ function Map(nom) {
 	
 	// Analyse des données
 	var mapData = JSON.parse(mapJsonData);
-    this.nbpilules=0;
+    this.nbpilules=236;
 	this.tileset = new Tileset(mapData.tileset);
 	this.terrain = mapData.terrain;
 	this.terrain_accessible=new Array();
     for (var i = 0, l = this.terrain.length ; i < l ; i++){
         this.terrain_accessible.push([]);
         for (var j = 0, k = this.terrain[0].length ; j < k ; j++){
-            if (this.terrain[i][j]==30 || this.terrain[i][j]==28){
-                this.nbpilules+=1;
-            }
             for (l = 0; l<case_inaccessible.length;l++){
                 if (this.terrain[i][j]==case_inaccessible[l]) {
                     this.terrain_accessible[i].push(1);
@@ -55,9 +52,9 @@ Map.prototype.addPersonnage = function(perso) {
 Map.prototype.dessinerMap = function(context) {
 	for(var i = 0, l = this.terrain.length ; i < l ; i++) {
 		var ligne = this.terrain[i];
-		var y = i * 32;
+		var y = i * 24;
 		for(var j = 0, k = ligne.length ; j < k ; j++) {
-			this.tileset.dessinerTile(ligne[j], context, j * 32, y);
+			this.tileset.dessinerTile(ligne[j], context, j * 24, y);
 		}
 	}
 	
